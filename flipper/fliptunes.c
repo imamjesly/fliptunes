@@ -259,12 +259,24 @@ static void send_command(App* app, const char* code) {
     FURI_LOG_I(TAG, "sent %s", code);
 }
 
-/* Tell the phone whether to listen for beats */
+/* Tell the phone whether to listen for beats, and how sensitively.
+ * Sent as ONE Bluetooth packet: back-to-back packets can be dropped while the
+ * previous one is still being delivered. (With with_sync, "C:RA" is added first.) */
+static void send_beat_setting_ex(App* app, bool with_sync) {
+    char msg[48];
+    snprintf(
+        msg,
+        sizeof(msg),
+        "%sC:BT:%d\nC:BS:%d\n",
+        with_sync ? "C:RA\n" : "",
+        app->settings.led_pulse ? 1 : 0,
+        app->settings.beat_sensitivity);
+    send_line(app, msg);
+    FURI_LOG_I(TAG, "sent beat settings%s", with_sync ? " + resend request" : "");
+}
+
 static void send_beat_setting(App* app) {
-    send_command(app, app->settings.led_pulse ? "BT:1" : "BT:0");
-    char code[16];
-    snprintf(code, sizeof(code), "BS:%d", app->settings.beat_sensitivity);
-    send_command(app, code);
+    send_beat_setting_ex(app, false);
 }
 
 static void set_feedback(App* app, const char* text) {
@@ -812,10 +824,7 @@ int32_t fliptunes_app(void* p) {
         }
         furi_mutex_release(app->mutex);
 
-        if(want_sync) {
-            send_command(app, "RA");
-            send_beat_setting(app);
-        }
+        if(want_sync) send_beat_setting_ex(app, true);
         if(want_buzz) notification_message(app->notifications, &seq_track_buzz);
 
         /* LED priority: 1) metronome locked to the song's tempo

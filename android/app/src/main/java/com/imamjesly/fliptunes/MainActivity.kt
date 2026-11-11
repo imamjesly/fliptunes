@@ -122,6 +122,7 @@ class MainActivity : ComponentActivity() {
                 PackageManager.PERMISSION_GRANTED
         }
         var showPicker by remember { mutableStateOf(false) }
+        var deviceName by remember { mutableStateOf(Prefs.name(context)) }
 
         Column(
             Modifier
@@ -153,7 +154,7 @@ class MainActivity : ComponentActivity() {
             Card(Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text("Flipper", style = MaterialTheme.typography.titleMedium)
-                    Text("Device: ${Prefs.name(context) ?: "none chosen"}")
+                    Text("Device: ${deviceName ?: "none chosen"}")
                     Text("Link: ${link.name.lowercase()} - $linkDetail")
                     Text("Beat: $beatStatus", style = MaterialTheme.typography.bodySmall)
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -198,14 +199,21 @@ class MainActivity : ComponentActivity() {
             Spacer(Modifier.height(24.dp))
         }
 
-        if (showPicker) DevicePicker(onDismiss = { showPicker = false })
+        if (showPicker) DevicePicker(
+            onDismiss = { showPicker = false },
+            onChosen = { deviceName = it },
+        )
     }
 }
 
 @Composable
 private fun SetupRow(label: String, done: Boolean, onFix: () -> Unit) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text((if (done) "OK   " else "--   ") + label, modifier = Modifier.weight(1f))
+        Text(
+            (if (done) "\u2713  " else "\u25CB  ") + label, // check mark when granted, empty circle when not
+            modifier = Modifier.weight(1f),
+            color = if (done) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+        )
         if (!done) TextButton(onClick = onFix) { Text("Allow") }
     }
 }
@@ -249,7 +257,7 @@ private fun formatTime(ms: Long): String {
 /** Lists paired Flipper devices plus any found by a Bluetooth scan. */
 @SuppressLint("MissingPermission")
 @Composable
-private fun DevicePicker(onDismiss: () -> Unit) {
+private fun DevicePicker(onDismiss: () -> Unit, onChosen: (String) -> Unit) {
     val context = LocalContext.current
     val adapter = remember { context.getSystemService(BluetoothManager::class.java).adapter }
     val found = remember { mutableStateMapOf<String, String>() }
@@ -286,6 +294,7 @@ private fun DevicePicker(onDismiss: () -> Unit) {
                 found.forEach { (address, name) ->
                     TextButton(onClick = {
                         Prefs.save(context, address, name)
+                        onChosen(name)
                         Bridge.link?.reconnect()
                         onDismiss()
                     }) { Text("$name\n$address") }

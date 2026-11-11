@@ -12,7 +12,7 @@ right on your Flipper Zero, control the music from it, and watch the LED pulse t
 ![Flipper Zero](https://img.shields.io/badge/Flipper%20Zero-firmware%201.5%2B-orange)
 ![Android](https://img.shields.io/badge/Android-12%2B-3ddc84)
 
-<img src="docs/images/player.png" width="512" alt="FlipTunes on a Flipper Zero showing album art, song title, artist, Spotify and a progress bar">
+<img src="docs/images/flipper-player.png" width="512" alt="FlipTunes on a Flipper Zero showing album art, song title, artist, Spotify and a progress bar">
 
 </div>
 
@@ -27,6 +27,24 @@ right on your Flipper Zero, control the music from it, and watch the LED pulse t
 - ⚙️ **Settings menu** - every effect can be switched on or off
 - 🎧 Works with **any** music app that shows media controls (Spotify, YouTube Music, Samsung Music, podcasts...)
 - 🔐 **No internet, no accounts, no tracking** - phone and Flipper talk directly over Bluetooth
+
+## Screenshots
+
+<table>
+<tr>
+<td align="center"><img src="docs/images/flipper-waiting.png" width="256"><br><sub>Start screen</sub></td>
+<td align="center"><img src="docs/images/flipper-settings.png" width="256"><br><sub>Settings</sub></td>
+<td align="center"><img src="docs/images/flipper-settings-2.png" width="256"><br><sub>More settings</sub></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td align="center"><img src="docs/images/phone-setup.jpg" width="230"><br><sub>First run: allow access</sub></td>
+<td align="center"><img src="docs/images/phone-now-playing.jpg" width="230"><br><sub>Now playing + Flipper cover preview</sub></td>
+<td align="center"><img src="docs/images/phone-log.jpg" width="230"><br><sub>Test controls and activity log</sub></td>
+</tr>
+</table>
 
 ## How it works
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed (monochrome) icon: just the pixel note -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,26h6v6h-6zM60,26h6v6h-6zM66,26h6v6h-6zM72,26h6v6h-6zM54,32h6v6h-6zM60,32h6v6h-6zM66,32h6v6h-6zM72,32h6v6h-6zM54,38h6v6h-6zM72,38h6v6h-6zM54,44h6v6h-6zM72,44h6v6h-6zM54,50h6v6h-6zM54,56h6v6h-6zM36,62h6v6h-6zM42,62h6v6h-6zM48,62h6v6h-6zM54,62h6v6h-6zM30,68h6v6h-6zM36,68h6v6h-6zM42,68h6v6h-6zM48,68h6v6h-6zM54,68h6v6h-6zM30,74h6v6h-6zM36,74h6v6h-6zM42,74h6v6h-6zM48,74h6v6h-6zM54,74h6v6h-6zM36,80h6v6h-6zM42,80h6v6h-6zM48,80h6v6h-6z" />
+</vector>

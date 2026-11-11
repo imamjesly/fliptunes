@@ -1,0 +1,14 @@
+# FlipTunes for Flipper Zero
+App(
+    appid="fliptunes",
+    name="FlipTunes",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="fliptunes_app",
+    stack_size=4 * 1024,
+    fap_category="Bluetooth",
+    fap_icon="fliptunes.png",
+    fap_version="1.0",
+    fap_author="Imaam Jesly",
+    fap_weburl="https://github.com/imamjesly/fliptunes",
+    fap_description="Now Playing for your phone: song title, artist, progress, album art, LED beat pulse and music controls. Needs the FlipTunes Android app.",
+)

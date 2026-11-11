@@ -1,0 +1,18 @@
+# Android
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+*.iml
+# Signing keys - never commit these
+*.jks
+*.keystore
+keystore.properties
+# Flipper
+flipper/dist/
+flipper/.vscode/
+# OS
+.DS_Store
+Thumbs.db

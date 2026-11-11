@@ -3,6 +3,10 @@ android/.gradle/
 android/.kotlin/
 android/build/
 android/app/build/
+android/app/release/
+android/app/debug/
+*.apk
+*.aab
 android/local.properties
 android/.idea/
 *.iml

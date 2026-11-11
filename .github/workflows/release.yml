@@ -1,0 +1,34 @@
+name: Release
+
+# When a version tag (v1.0.0, v1.1.0, ...) is published, build the Flipper app
+# from that exact code and attach it to the GitHub release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  fap:
+    name: Attach fliptunes.fap
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build with ufbt (latest release SDK)
+        id: build
+        uses: flipperdevices/flipperzero-ufbt-action@v0.1
+        with:
+          app-dir: flipper
+      - name: Upload to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          FAP=$(find . -name "fliptunes.fap" -not -path "./.git/*" | head -n 1)
+          echo "Built: $FAP (SDK ${{ steps.build.outputs.suffix }})"
+          cp "$FAP" fliptunes.fap
+          for i in 1 2 3 4 5 6; do
+            gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 && break
+            sleep 10   # release may still be being created
+          done
+          gh release upload "$GITHUB_REF_NAME" fliptunes.fap --clobber

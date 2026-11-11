@@ -78,6 +78,11 @@ You need **both** parts. Downloads are on the [Releases](https://github.com/imam
    - *Optional:* **Microphone** - only used to feel the music's beat for the LED pulse.
      Android groups audio analysis under this permission. No audio is recorded or sent anywhere.
 
+> **Note on Android's new developer verification:** Google is rolling out a requirement for
+> sideloaded apps to come from verified developers (enforced in Brazil, Indonesia, Singapore and
+> Thailand since September 2026, worldwide in 2027). If your phone shows a warning, Android's
+> "install unverified app" option still works - it just adds a few steps and a waiting period.
+
 ### 3. Connect
 1. On the Flipper: **Apps > Bluetooth > FlipTunes**.
 2. On the phone: **Choose Flipper** > pick your Flipper > **Start bridge**.

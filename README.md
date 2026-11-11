@@ -2,7 +2,7 @@
 
 # 🎵 FlipTunes
 
-**Now Playing display and music remote for Flipper Zero**
+**Now Playing display and music remote with Flipper Zero**
 
 See what's playing on your Android phone - title, artist, progress and album art -
 right on your Flipper Zero, control the music from it, and watch the LED pulse to the beat.

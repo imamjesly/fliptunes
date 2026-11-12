@@ -147,6 +147,10 @@ android/   Android app (Kotlin, Jetpack Compose)
 docs/      How it works, message protocol, images
 ```
 
+## Similar projects
+
+- [villenull/flipper-now-playing](https://github.com/villenull/flipper-now-playing) - an earlier, independently built Now Playing app for Flipper Zero with an Android companion. Worth checking out too.
+
 ## Contributing
 
 Issues and pull requests are welcome - bug reports with your phone model, music app and Flipper firmware version help a lot.
